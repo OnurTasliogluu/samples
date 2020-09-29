@@ -73,9 +73,12 @@ char *ot_user_information_get_sample_buffer(ot_user_information_t *this)
 void ot_user_information_display_users(void *user)
 {
     ot_user_information_t *this = user;
-    printf("this->name = %s\n", this->name);
-    printf("this->surname = %s\n", this->surname);
-    printf("this->sample_buffer = %s\n", this->sample_buffer);
+    if (this != NULL)
+    {
+        printf("this->name = %s\n", this->name);
+        printf("this->surname = %s\n", this->surname);
+        printf("this->sample_buffer = %s\n", this->sample_buffer);
+    }
 }
 
 int ot_user_information_compare_users(void *user_1, void *user_surname)
@@ -108,9 +111,8 @@ void ot_user_information_deinit(ot_user_information_t *this)
     free(this->sample_buffer);
 }
 
-void ot_user_information_destroy(void *temp)
+void ot_user_information_destroy(void *this)
 {
-    ot_user_information_t *this = temp;
     ot_user_information_deinit(this);
     free(this);
 }

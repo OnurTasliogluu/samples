@@ -37,6 +37,7 @@ void test_linked_list()
 void test_hash_table()
 {
     int key;
+    ot_linked_list_t *temp_list = NULL;
     ot_hash_table_t *ot_hash_table = ot_hash_table_create();
     ot_hash_table_init(ot_hash_table,10);
 
@@ -72,14 +73,18 @@ void test_hash_table()
 
     // get linked list
     key = ot_user_information_hash_key_calculater(user_2);
-    ot_linked_list_t *temp_list = ot_hash_table_general_get_data(ot_hash_table, key);
-
-    // add user
-    ot_linked_list_add_node(temp_list, user_1);
+    temp_list = ot_hash_table_general_get_data(ot_hash_table, key);
     ot_linked_list_add_node(temp_list, user_2);
+
+    key = ot_user_information_hash_key_calculater(user_1);
+    temp_list = ot_hash_table_general_get_data(ot_hash_table, key);
+    ot_linked_list_add_node(temp_list, user_1);
+
+    ot_linked_list_delete_all_node(temp_list);
 
     for (size_t i = 0; i < 10; i++)
     {
+        printf("node-index=%zu\n", i);
         ot_linked_list_display(ot_list[i]);
         ot_linked_list_destroy(ot_list[i]);
     }

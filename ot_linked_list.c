@@ -74,6 +74,7 @@ void ot_linked_list_delete_all_node(ot_linked_list_t *this)
         free(temp);
         temp = next;
     }
+    this->root = NULL;
 }
 
 int ot_linked_list_get_max_list_size(ot_linked_list_t *this)
@@ -86,6 +87,7 @@ void ot_linked_list_display(ot_linked_list_t *this)
     node_t *temp = this->root;
     while (temp != NULL)
     {
+        printf("DISPLAY\n");
         this->ot_linked_list_general_display(temp->data);
         temp = temp->next;
     }
